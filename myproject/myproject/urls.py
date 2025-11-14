@@ -26,6 +26,7 @@ from index.views import mult
 from index.views import sum1
 from index.views import mult1
 from index.views import sub1
+from index.views import health
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,5 +39,6 @@ urlpatterns = [
     path('mult/',mult),
     path('sum1/',sum1),
     path('mult1/',mult1),
-    path("sub1/",sub1)
+    path("sub1/",sub1),
+    path('health/',health)
 ]

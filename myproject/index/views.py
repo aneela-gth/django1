@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.db import connection
 
 # Create your views here.
 def sample(request):
@@ -46,6 +47,12 @@ def sub1(request):
     d=request.GET.get('d',20)
     result1=c-d
     return HttpResponse(f"the sub1 is:{result1}")
-
+def health(request):
+    try:
+        with connection.cursor() as c:
+            c.execute("SELECT1")
+        return JsonResponse({"status":"ok","db":"connection"})
+    except Exception as e:
+        return JsonResponse({'status':"error","db":str(e)})
 
     
