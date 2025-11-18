@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-cot#*f=-zb=_*mb%@6diwtngw5th(fh3x$-_3128fns%f4=ghk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['simpledjango-app-q5o1.onrender.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'index'
 ]
 
 MIDDLEWARE = [
@@ -47,6 +48,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "index.middleware.AgeMiddleware",
+    "index.middleware.MedicalFitMiddleware",
+    "index.middleware.SscMiddleware"
 ]
 
 ROOT_URLCONF = 'myproject.urls'
@@ -76,14 +80,14 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'53r-54r',
+        'NAME':'53r_54r',
         'USER':"root",
         'PASSWORD':"123456",
         'HOST':"127.0.0.1",
         'PORT':"3306",
         'OPTIONS':{
-            'charest':'utf8mb4',
-            'init-command':" SET sql-mode'STRICT-TRANS-TABLES'"
+            'charset': 'utf8',
+            'init_command':" SET sql_mode='STRICT_TRANS_TABLES'"
         }
 
     }
