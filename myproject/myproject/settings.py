@@ -50,7 +50,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "index.middleware.AgeMiddleware",
     "index.middleware.MedicalFitMiddleware",
-    "index.middleware.SscMiddleware"
+    "index.middleware.SscMiddleware",
+    'index.middleware.UsernameMiddleware',
+    'index.middleware.emailMiddleware',
+    'index.middleware.PasswordMiddleware',
+
+
 ]
 
 ROOT_URLCONF = 'myproject.urls'

@@ -29,8 +29,7 @@ from index.views import sub1
 from index.views import health
 from index.views import addStudent
 from index.views import addpost
-from index.views import addpost,job1,job2
-
+from index.views import signUp, addpost,job1,job2
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('sample/',sample),
@@ -47,5 +46,7 @@ urlpatterns = [
     path('add/',addStudent),
     path('addpost/',addpost),
     path("job1/",job1),
-    path('job2/',job2)
+    path('job2/',job2),
+    path('signup/', signUp),
+    
 ]

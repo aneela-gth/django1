@@ -7,11 +7,13 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .models import Student
 from .models import post
+from index.models import Users
+
 
 # Create your views here.
 def sample(request):
     return HttpResponse('hello world')
-def sample1(reruest):
+def sample1(request):
     return HttpResponse('welocome to dijango')
 def sampleinfo(request):
     # data={"name":"aneela","age":23}
@@ -174,6 +176,16 @@ def job2(request):
     return JsonResponse({"message":"u have successfully applied for job2"},status=200)
 
 
+
 @csrf_exempt
-def signup(request):
-    
+def signUp(request):
+    if request.method=='POST':
+        data = json.loads(request.body)
+        print(data)
+        User=Users.objects.create(
+            username=data.get('username'),
+            email=data.get('email'),
+            password=data.get('password')
+            )
+    return JsonResponse({"status":"success"},status=200)
+
