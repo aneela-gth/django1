@@ -126,6 +126,7 @@ class PasswordMiddleware:
                 return JsonResponse({"error":"Password must contain at least 8 characters including uppercase, lowercase, number and special character"}, status=400)
             
         return self.get_response(request)
+    
 
     
     

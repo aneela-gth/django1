@@ -20,3 +20,11 @@ class Users(models.Model):
     username=models.CharField(max_length=100,unique=True)
     email=models.EmailField(unique=True)
     password=models.CharField(max_length=100)
+
+class movies(models.Model):
+    movie_name=models.CharField(max_length=100,null=False)
+    movie_date=models.CharField(max_length=100)
+    rating=models.CharField(max_length=10)
+    budget=models.IntegerField()
+    
+  

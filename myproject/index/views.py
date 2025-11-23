@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Student
 from .models import post
 from index.models import Users
+from.models import movies
 
 
 # Create your views here.
@@ -188,4 +189,57 @@ def signUp(request):
             password=data.get('password')
             )
     return JsonResponse({"status":"success"},status=200)
+
+
+
+
+@csrf_exempt
+
+def movie(request):
+    if request.method=='POST':
+        data=json.loads(request.body)
+        rating_number=int(data.get("rating",0))
+        rating_stars="⭐" * rating_number
+        movie_detales=movies.objects.create(
+            movie_name=data.get("movie_name"),
+            movie_date=data.get("movie_date"),
+            rating=rating_stars,
+            budget=data.get("budget")
+
+        )
+        return JsonResponse({"status":"succes","message":"movie_detailes successfully","move_name":movie_detales.movie_name,"movie_date":movie_detales.movie_date, "rating_in_stars":rating_stars, "budget":movie_detales.budget},status=200)
+    # return JsonResponse({"error":"use post method"},status=400)
+ 
+   
+
+    
+    elif request.method=="PUT":
+        data=json.loads(request.body)
+        ref_id=data.get("id")
+        new_movie=data.get("movie")
+        existing_movie=movies.objects.filter(id=ref_id).first()
+        if existing_movie is None:
+          return JsonResponse({"error": "Movie not found"}, status=404)
+        existing_movie.movie_name = new_movie
+        existing_movie.save()
+        updated_data=movies.objects.filter(id=ref_id).values().first()
+        return JsonResponse({"status":"success","updating_data":"data updated successfully","updated_data":updated_data},status=200)
+        
+        
+
+    elif request.method=="DELETE":
+         data=json.loads(request.body)
+         ref_id=data.get("id")
+         movie_obj = movies.objects.filter(id=ref_id).first()
+        
+         if movie_obj is None:
+             return JsonResponse({"error": "Movie not found"}, status=404)
+
+
+    deleted_data=list(movies.objects.filter(id=ref_id).values())
+    movie_obj.delete()
+    return JsonResponse({"status":"succes","message":"movie  deleted successfully"},status=200)
+   
+
+   
 
